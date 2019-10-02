@@ -1,0 +1,182 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+html, body {
+  height: 100%;
+  /* height: 800px; */
+  width: 640px;
+  background-color: beige;
+}
+
+.page {
+    width: 100%;
+    min-width: 640px;
+    min-height: 100%;
+    margin: 0 auto -40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.button{
+    position: absolute;
+
+}
+
+#start{
+    width: 150px;
+    height: 50px;
+    margin: 30px;
+}
+
+#console {
+    /* align-self: center; */
+    /* position:relative;  */
+    display: block;
+    width: 572px;
+    height: 350px;  
+    background:  url("../img/game-bg.jpg") center center no-repeat;
+    position: relative;
+    /* top: 200px;
+    left: 350px; */
+    z-index: 1;
+}
+
+#test {
+    width: 100px;
+    height: 100px;
+    background-color: green; 
+    
+}
+
+/* Wolf body setup */
+/* wolf body has 2 positions - left and right*/
+
+div.wolf-left{
+    /* align-self: center; */
+    /* position:relative;  */
+    position: absolute;
+    width: 98px;
+    height: 152px;
+    background: url("../img/wolf/wolf-p-0.png") center center no-repeat; 
+    top: 166px;
+    left: 177px;
+}
+
+#wolf.wolf-right{
+    /* align-self: center; */
+    /* position:relative;  */
+    position: absolute;
+    width: 98px;
+    height: 152px;
+    background: url("../img/wolf/wolf-p-1.png") center center no-repeat; 
+    top: 165px;
+    left: 292px;
+}
+
+/* basket */
+/* basket has 4 positions: bottom-left, top-left, bottom-right, top-right */
+
+.basket-bot-left {
+    width: 84px;
+    height: 78px;
+    position: absolute;
+    background: url("../img/basket/basket-p-0-0.png") center center no-repeat; 
+    top: 227px;
+    left: 127px;
+}
+
+
+.basket-top-left {
+    width: 84px;
+    height: 78px;
+    position: absolute;
+    background: url("../img/basket/basket-p-0-1.png") center center no-repeat; 
+    top: 158px;
+    left: 127px;
+}
+
+
+.basket-bot-right {
+    width: 84px;
+    height: 78px;
+    position: absolute;
+    background: url("../img/basket/basket-p-1-0.png") center center no-repeat; 
+    top: 235px;
+    left: 360px;
+}
+
+
+.basket-top-right {
+    width: 84px;
+    height: 78px;
+    position: absolute;
+    background: url("../img/basket/basket-p-1-1.png") center center no-repeat; 
+    top: 165px;
+    left: 366px;
+}
+
+
+
+/* EGGS */
+
+/* starting position for egg1 */
+#eggs .egg1 {
+    width: 15px;
+    height: 15px;
+    background: transparent url('../img/egg/egg.png') center center no-repeat;
+    position: absolute;
+    top: 198px;
+    left: 47px;
+    -moz-transform:rotate(65deg);
+    -webkit-transform:rotate(65deg);
+    -o-transform:rotate(65deg);
+    -ms-transform:rotate(65deg);
+    transform: rotate(65deg);
+}
+
+
+
+#eggs .egg2 {
+    width: 15px;
+    height: 15px;
+    background: transparent url('../img/egg/egg.png') center center no-repeat;
+    position: absolute;
+    top: 120px;
+    left: 48px;
+    -moz-transform:rotate(65deg);
+    -webkit-transform:rotate(65deg);
+    -o-transform:rotate(65deg);
+    -ms-transform:rotate(65deg);
+    transform: rotate(65deg);
+}
+
+#eggs .egg4 {
+    width: 15px;
+    height: 15px;
+    background: transparent url('../img/egg/egg.png') center center no-repeat;
+    position: absolute;
+    top: 120px;
+    left: 507px;
+    -moz-transform:rotate(350deg);
+    -webkit-transform:rotate(350deg);
+    -o-transform:rotate(350deg);
+    -ms-transform:rotate(350deg);
+    transform: rotate(350deg);
+}
+
+#eggs .egg3 {
+    width: 15px;
+    height: 15px;
+    background: transparent url('../img/egg/egg.png') center center no-repeat;
+    position: absolute;
+    top: 198px;
+    left: 507px;
+    -moz-transform:rotate(350deg);
+    -webkit-transform:rotate(350deg);
+    -o-transform:rotate(350deg);
+    -ms-transform:rotate(350deg);
+    transform: rotate(350deg);
+}
