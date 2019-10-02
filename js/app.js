@@ -8,8 +8,8 @@ const gameInfo = {
         egg3: 0,
         egg4:0
     },
-    speed: 1000,
-    eggsInterval: 3000,
+    speed: 3000,
+    eggsInterval: 9000,
     brokenEggs: 0,
     score: 0
 }
@@ -34,7 +34,7 @@ class Game {
     }
 
     compareEggBusketPositions(eggId){
-        const eggPosition = eggs.eggStorage[eggId][0];
+        const eggPosition = eggs.eggStorage[eggId].class;
         const basketPosition = $('#basket').attr('class');
         console.log(`!!!!!! this.matchDict[eggPosition] = ${this.matchDict[eggPosition]} `);
         console.log(`basketPosition = ${basketPosition}`);
@@ -74,25 +74,6 @@ class Wolf{
         // create a basket:
         $('#basket').attr('class', this.positionDict.basket[[this.body, this.basket]]);
 
-
-/* 
-        if (this.body === 0){
-            $('#wolf').attr('class', 'wolf-left');
-        } else {
-            $('#wolf').attr('class', 'wolf-right');
-        }
-        if (this.basket === 0 && this.body === 0) {
-            $('#basket').attr('class', 'basket-bot-left');
-        } else if (this.basket === 0 && this.body === 1) {
-            $('#basket').attr('class', 'basket-bot-right');
-        } else if (this.basket === 1 && this.body === 1){
-            $('#basket').attr('class', 'basket-top-right');
-        } else if (this.basket === 1 && this.body === 0){
-            $('#basket').attr('class', 'basket-top-left');
-        } */
-
-
-
         console.log(`A new wolf img was creater`)
     }
  
@@ -113,10 +94,8 @@ class Wolf{
             // console.log(`new wolf position: body ${this.body} and basket ${this.basket}`);
         
             wolf.createWolfImg();
-        }
-        
+        }   
     }
-
 }
 
 /////////// EGGS /////////////////////
@@ -131,21 +110,25 @@ class Eggs {
             2: "egg2",
             3: "egg3",
             4: "egg4"
-        }
+        };
         this.eggStorage = {}
     }
 
     createAnEgg(eggId){
+        console.log(`this.eggStorage[eggId].eggClass: ${this.eggStorage[eggId].class}`);
         $('#eggs').append(`
-        <div id="${eggId}" class="${this.eggStorage[eggId][0]}"></div>
+        <div id="${eggId}" class="${eggs.eggStorage[eggId].class}"></div>
         `);
-        this.eggStorage[eggId][1]++;
+        // assign position 1 ti the egg
+        eggs.eggStorage[eggId].position++;
+        console.log("egg was created")
+
     }
 
     removeAnEgg(eggId){
         $(`#${eggId}`).remove();
-        // console.log(`element ${eggId} is removed from DOM`);
-        this.eggStorage[eggId][1] = 0;
+        console.log(`element ${eggId} is removed from DOM`);
+        // delete this.eggStorage[eggId];
     }
 
     moveAnEgg(eggId) {
@@ -169,13 +152,16 @@ class Eggs {
         $(`#${eggId}`).css('top', top);
         $(`#${eggId}`).css('left', left);
         $(`#${eggId}`).css('-webkit-transform', `rotate(${degree}deg)`);
+        console.log(`Egg ${eggId} was moved.`)
     }
 
     startRollingEgg(eggId){
         this.createAnEgg(eggId);
         const rolling = setInterval(()=> {
-            if (this.eggStorage[eggId][1] < 5){
-                this.eggStorage[eggId][1]++;
+            console.log(`===>>> this.eggStorage[eggId].position:  ${this.eggStorage[eggId].position}`)
+            console.log(this.eggStorage)
+            if (this.eggStorage[eggId].position < 6){
+                this.eggStorage[eggId].position ++;
                 this.moveAnEgg(eggId);
             } else {
                 // check the position of basket at this moment
@@ -192,16 +178,19 @@ class Eggs {
         const eggFactory = setInterval(()=>{
             // here we get a random number fron 1 to 4 that deffines the corner the eggs starts moving from
             
-            
-            // let randomNum = Math.floor(Math.random() * Math.floor(4))+1;
-            let randomNum = 2;
-            
+            let randomNum = Math.floor(Math.random() * Math.floor(4))+1;
+            id ++;
             
             // Each egg has unique ID, type (corner/track), and position on its track [from 0 to 5]
-            let eggId = "egg"+(id+1);
-            let eggType = this.eggDict[randomNum]
+            let eggId = "egg"+(id);
+            let eggClass = "egg"+randomNum;
             // adding egg Id to properies:
-            this.eggStorage = {[eggId]: [eggType, 0]};
+            eggs.eggStorage = {[eggId]: {class: eggClass,
+                position: 0}, ...eggs.eggStorage}
+            console.log("####################")
+            console.log(`egg with ID ${eggId} and class ${eggClass} was generatet`)
+            console.log("####################");
+            console.log(eggs.eggStorage[eggId]);
 
             eggs.startRollingEgg(eggId);
         }, game.eggsInterval)
