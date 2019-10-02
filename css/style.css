@@ -180,3 +180,67 @@ div.wolf-left{
     -ms-transform:rotate(350deg);
     transform: rotate(350deg);
 }
+
+
+
+/* SCORE */
+
+#console #score {
+    position: absolute;
+    top: 48px;
+    left: 326px;
+  }
+#console #score ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    }
+#console #score ul > li {
+    width: 31px;
+    height: 47px;
+    margin: 0 0 0 -2px;
+    background: transparent url('../img/score/num-bg.png');
+    display: inline-block;
+    vertical-align: top;
+    }
+
+#console #score ul > li span {
+    width: 100%;
+    height: 100%;
+    background: transparent url('../img/score/nums.png');
+    background-position: 0px 0px;
+    /* text-indent: -200px; */
+    display: block;
+    overflow: hidden;
+  }
+  #console #score ul > li.n-0 span {
+    background-position: 0px 0px;
+  }
+  #console #score ul > li.n-1 span {
+    background-position: -31px 0px;
+  }
+  #console #score ul > li.n-2 span {
+    background-position: -62px 0px;
+  }
+  #console #score ul > li.n-3 span {
+    background-position: -93px 0px;
+  }
+  #console #score ul > li.n-4 span {
+    background-position: -124px 0px;
+  }
+  #console #score ul > li.n-5 span {
+    background-position: -155px 0px;
+  }
+  #console #score ul > li.n-6 span {
+    background-position: -186px 0px;
+  }
+  #console #score ul > li.n-7 span {
+    background-position: -217px 0px;
+  }
+  #console #score ul > li.n-8 span {
+    background-position: -248px 0px;
+  }
+  #console #score ul > li.n-9 span {
+    background-position: -279px 0px;
+  }

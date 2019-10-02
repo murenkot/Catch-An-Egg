@@ -8,8 +8,8 @@ const gameInfo = {
         egg3: 0,
         egg4:0
     },
-    speed: 3000,
-    eggsInterval: 9000,
+    speed: 1000,
+    eggsInterval: 3000,
     brokenEggs: 0,
     score: 0
 }
@@ -30,20 +30,59 @@ class Game {
      start() {
         console.log("Game has started");
         wolf.createWolfImg();
+        this.showScore();
         eggs.generateEggs();
     }
 
     compareEggBusketPositions(eggId){
         const eggPosition = eggs.eggStorage[eggId].class;
         const basketPosition = $('#basket').attr('class');
-        console.log(`!!!!!! this.matchDict[eggPosition] = ${this.matchDict[eggPosition]} `);
-        console.log(`basketPosition = ${basketPosition}`);
+        // console.log(`!!!!!! this.matchDict[eggPosition] = ${this.matchDict[eggPosition]} `);
+        // console.log(`!!!!!! basketPosition = ${basketPosition}`);
         if (this.matchDict[eggPosition] === basketPosition){
             console.log("Wolf caught the egg!!!!!!");
+            this.updateScore();
         } else {
             console.log("One egg is broken");
+            this.updateBrokenEggs();
         }
     }
+
+    updateScore(){
+        this.score ++;
+        this.showScore();
+    }
+
+    showScore() {
+        if (this.score === 0){
+            const template = `
+            <ul>
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+            </ul>
+            `
+            $('#score').append(template);
+        } else {
+            const scoreArray = String(this.score).split('');
+            const scoreLength = scoreArray.length;
+            console.log(`scoreArray: ${scoreArray}`)
+            console.log(`scoreLength: ${scoreLength}`)
+            $('#score ul li').eq(2).attr('class', `n-${scoreArray[scoreLength-1]}`)
+            if(scoreLength > 1) {
+                $('#score ul li').eq(1).attr('class', `n-${scoreArray[scoreLength-2]}`)
+            }
+            if (scoreLength > 2) {
+                $('#score ul li').eq(0).attr('class', `n-${scoreArray[scoreLength-3]}`)
+            }
+        }
+    }
+
+    updateBrokenEggs(){
+        this.brokenEggs ++;
+    }
+
+
     
 }
 
@@ -74,7 +113,7 @@ class Wolf{
         // create a basket:
         $('#basket').attr('class', this.positionDict.basket[[this.body, this.basket]]);
 
-        console.log(`A new wolf img was creater`)
+        // console.log(`A new wolf img was creater`)
     }
  
     // body position left-right (arrows)
@@ -115,13 +154,12 @@ class Eggs {
     }
 
     createAnEgg(eggId){
-        console.log(`this.eggStorage[eggId].eggClass: ${this.eggStorage[eggId].class}`);
         $('#eggs').append(`
         <div id="${eggId}" class="${eggs.eggStorage[eggId].class}"></div>
         `);
         // assign position 1 ti the egg
         eggs.eggStorage[eggId].position++;
-        console.log("egg was created")
+        // console.log("egg was created")
 
     }
 
@@ -152,15 +190,13 @@ class Eggs {
         $(`#${eggId}`).css('top', top);
         $(`#${eggId}`).css('left', left);
         $(`#${eggId}`).css('-webkit-transform', `rotate(${degree}deg)`);
-        console.log(`Egg ${eggId} was moved.`)
+        // console.log(`Egg ${eggId} was moved.`)
     }
 
     startRollingEgg(eggId){
         this.createAnEgg(eggId);
         const rolling = setInterval(()=> {
-            console.log(`===>>> this.eggStorage[eggId].position:  ${this.eggStorage[eggId].position}`)
-            console.log(this.eggStorage)
-            if (this.eggStorage[eggId].position < 6){
+            if (this.eggStorage[eggId].position < 5){
                 this.eggStorage[eggId].position ++;
                 this.moveAnEgg(eggId);
             } else {
@@ -182,16 +218,11 @@ class Eggs {
             id ++;
             
             // Each egg has unique ID, type (corner/track), and position on its track [from 0 to 5]
-            let eggId = "egg"+(id);
+            let eggId = "egg-"+(id);
             let eggClass = "egg"+randomNum;
             // adding egg Id to properies:
             eggs.eggStorage = {[eggId]: {class: eggClass,
                 position: 0}, ...eggs.eggStorage}
-            console.log("####################")
-            console.log(`egg with ID ${eggId} and class ${eggClass} was generatet`)
-            console.log("####################");
-            console.log(eggs.eggStorage[eggId]);
-
             eggs.startRollingEgg(eggId);
         }, game.eggsInterval)
     }
