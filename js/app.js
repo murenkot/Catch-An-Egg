@@ -10,7 +10,7 @@ const gameInfo = {
     },
     speed: 1000,
     eggsInterval: 3000,
-    brokenEggs: 0,
+    loss: 0,
     score: 0
 }
 
@@ -18,7 +18,7 @@ class Game {
     constructor(obj){
         this.speed = obj.speed;
         this.eggsInterval = obj.eggsInterval;
-        this.brokenEggs = obj.brokenEggs;
+        this.loss = obj.loss;
         this.score = obj.score;
         this.matchDict = {
             egg1: 'basket-bot-left',
@@ -37,8 +37,6 @@ class Game {
     compareEggBusketPositions(eggId){
         const eggPosition = eggs.eggStorage[eggId].class;
         const basketPosition = $('#basket').attr('class');
-        // console.log(`!!!!!! this.matchDict[eggPosition] = ${this.matchDict[eggPosition]} `);
-        // console.log(`!!!!!! basketPosition = ${basketPosition}`);
         if (this.matchDict[eggPosition] === basketPosition){
             console.log("Wolf caught the egg!!!!!!");
             this.updateScore();
@@ -46,11 +44,6 @@ class Game {
             console.log("One egg is broken");
             this.updateBrokenEggs();
         }
-    }
-
-    updateScore(){
-        this.score ++;
-        this.showScore();
     }
 
     showScore() {
@@ -78,10 +71,28 @@ class Game {
         }
     }
 
-    updateBrokenEggs(){
-        this.brokenEggs ++;
+    updateScore(){
+        this.score ++;
+        this.showScore();
     }
 
+    updateBrokenEggs(){
+        this.loss ++;
+        this.showBrokenEggs()
+    }
+
+    showBrokenEggs(){
+        const $loss = $('#loss');
+        if (this.loss === 1){
+            $loss.attr('class', 'one');
+        } else if(this.loss === 2){
+            $loss.attr('class', 'two');
+        } else if (this.loss === 3){
+            $loss.attr('class', 'three');
+        } else {
+            console.log(`loss ${this.loss} is not correct`);
+        }
+    }
 
     
 }
@@ -106,14 +117,12 @@ class Wolf{
     }
     // set wolf position based on object stored data:
     createWolfImg(){
-        // console.log(`wolf position: body ${this.body} and basket ${this.basket}`)
         // create a wolf
         $('#wolf').attr('class', this.positionDict.body[this.body]);
 
         // create a basket:
         $('#basket').attr('class', this.positionDict.basket[[this.body, this.basket]]);
 
-        // console.log(`A new wolf img was creater`)
     }
  
     // body position left-right (arrows)
@@ -129,9 +138,7 @@ class Wolf{
                 this.basket = 1;
             } else if (key === 'ArrowDown') {
                 this.basket = 0;
-            };
-            // console.log(`new wolf position: body ${this.body} and basket ${this.basket}`);
-        
+            };        
             wolf.createWolfImg();
         }   
     }
@@ -157,9 +164,8 @@ class Eggs {
         $('#eggs').append(`
         <div id="${eggId}" class="${eggs.eggStorage[eggId].class}"></div>
         `);
-        // assign position 1 ti the egg
+        // assign position 1 to the egg
         eggs.eggStorage[eggId].position++;
-        // console.log("egg was created")
 
     }
 

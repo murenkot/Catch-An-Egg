@@ -196,6 +196,8 @@ div.wolf-left{
     list-style: none;
     display: inline-block;
     }
+
+/* a background for the score field */
 #console #score ul > li {
     width: 31px;
     height: 47px;
@@ -205,6 +207,8 @@ div.wolf-left{
     vertical-align: top;
     }
 
+    /* img with all numbers are attachet to background of <span> element inside each <li> element */
+    /* but its background position == 0, 0 and it makes it invisible */
 #console #score ul > li span {
     width: 100%;
     height: 100%;
@@ -214,6 +218,8 @@ div.wolf-left{
     display: block;
     overflow: hidden;
   }
+
+  /* then li element gets a class [n-0, n-2 etc] background-position is changing and particular number is shown on the web page */
   #console #score ul > li.n-0 span {
     background-position: 0px 0px;
   }
@@ -244,3 +250,32 @@ div.wolf-left{
   #console #score ul > li.n-9 span {
     background-position: -279px 0px;
   }
+
+
+
+  /* LOSS */
+
+  /* div with the full picture is already on the page but attribute <width> == 0 and pic is invisible*/
+  div#loss {
+    height: 32px;
+    width: 0px;
+    position: absolute;
+    top: 115px;
+    left: 327px;
+    background: url(../img/loss/loss.png) left center no-repeat;
+  }
+
+/* when loss gets additional class [one, two, tree] it gets corresponding width that expose 1, 2 or 3 elements*/
+  div#loss.one {
+    width: 36px;
+  }
+
+  div#loss.two {
+    width: 75px;
+  }
+
+  div#loss.three {
+    width: 114px;
+  }
+
+
