@@ -1,4 +1,4 @@
-
+// Initial game setting/object:
 const gameInfo = {
     wolf: {body: 0,
         basket: 0},
@@ -8,7 +8,11 @@ const gameInfo = {
     score: 0
 }
 
-
+// function to generate a copy of the settings:
+function generateNewDataSet()  {
+    const gameInfoCopy = Object.assign({}, gameInfo);
+    return gameInfoCopy;
+}
 
 class Game {
     constructor(obj){
@@ -25,7 +29,11 @@ class Game {
         }
     }
     start() {
+        const newGameDataSet = Object.assign({}, gameInfo);
+
         console.log("Game has started");
+        console.log(this.speed);
+        console.log(this.eggsInterval);
         this.cleanMemory();
         wolf.createWolfImg();
         this.displayScore();
@@ -86,10 +94,27 @@ class Game {
             $loss.attr('class', 'two');
         } else if (this.loss === 3){
             $loss.attr('class', 'three');
-            this.gameOver();
+            this.blinkElement();
+            setTimeout(()=>{
+                this.unblinkElement()
+                this.gameOver(); 
+   
+            }, 2000);
+
+            
         } else {
             console.log(`loss ${this.loss} is not correct`);
         }
+    }
+
+    blinkElement() {
+        $('#loss').addClass('blink_me');
+        $('#score').addClass('blink_me');
+    }
+
+    unblinkElement() {
+        $('#loss').removeClass('blink_me');
+        $('#score').removeClass('blink_me');
     }
 
     increaseGameSpead() {
@@ -111,6 +136,7 @@ class Game {
             window.localStorage.score = JSON.stringify(db);
             console.log(`*******************************===>>>`);
             console.log(JSON.parse(window.localStorage.score));
+            this.showRecords();
         }
     }
 
@@ -121,6 +147,9 @@ class Game {
             $('#score-container ul li').remove();
         }
 
+/*         // create a header
+        $('#score-container').prepend('<h3>Best Of The Best:</h3>')
+ */
         // copy score object:
         let totalScores = JSON.parse(window.localStorage.score);
 
@@ -151,13 +180,19 @@ class Game {
     }
 
     cleanMemory(){
-        // $('#eggs div').remove();
-        this.speed = gameInfo.speed;
-        this.eggsInterval = gameInfo.eggsInterval;
-        this.loss = gameInfo.loss;
-        this.score = gameInfo.score;
-        wolf.body = gameInfo.wolf.body;
-        wolf.basket = gameInfo.wolf.basket;
+        // generate a new game data set:
+        gameInfoCopy = generateNewDataSet();
+
+        // assign initial values to all game objects attributes
+        console.log("Assigning!!!!!!")
+        console.log(gameInfoCopy.speed);
+        console.log(gameInfoCopy.eggsInterval);
+        this.speed = gameInfoCopy.speed;
+        this.eggsInterval = gameInfoCopy.eggsInterval;
+        this.loss = gameInfoCopy.loss;
+        this.score = gameInfoCopy.score;
+        wolf.body = gameInfoCopy.wolf.body;
+        wolf.basket = gameInfoCopy.wolf.basket;
         eggs.eggStorage = {};
         eggs.id = 0;
         console.log('game memory was cleaned')
@@ -324,13 +359,16 @@ class Eggs {
 }
 
 
-const wolf = new Wolf(gameInfo.wolf);
-const game = new Game(gameInfo);
+gameInfoCopy = generateNewDataSet();
+
+
+const wolf = new Wolf(gameInfoCopy.wolf);
+const game = new Game(gameInfoCopy);
 const eggs = new Eggs();
 
 
 function toggleStatus() {
-    $('#score-container  ul').toggleClass('invisible');
+    $('#score-container').toggleClass('invisible');
 }
 
 
@@ -350,7 +388,7 @@ $('#show-score').on('click', toggleStatus);
 
 window.localStorage.score = JSON.stringify({
     Jennifer: 350,
-    Bob: 82,
+    Bob: 22,
     Tonny: 238,
     Jake: 1,
     Anna: 4

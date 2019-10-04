@@ -1,8 +1,10 @@
 * {
     padding: 0px;
     margin: 0px;
-}
+    list-style: none;
+    font-family: sans-serif;
 
+}
 
 html, body {
   height: 100%;
@@ -12,25 +14,11 @@ html, body {
 }
 
 .page {
-  /* width: 100%; */
-  min-width: 572px;
   min-height: 100%;
   margin: 0 auto -40px;
   text-align: center;
   overflow: hidden;
 }
-
-/* .button{
-    position: absolute;
-
-}
-
-
-#start{
-    width: 150px;
-    height: 50px;
-    margin: 30px;
-} */
 
 .buttons-container {
   display: flex;
@@ -39,19 +27,8 @@ html, body {
 button{
   width: 150px;
   height: 50px;
-  margin: 30px;
+  margin: 20px;
 }
-
-
-/* div#score-frame{
-  position: absolute;
-  width: 150px;
-  height: 200px;
-  padding: 20px 10px;
-  background-color: red;
-
-} */
-
 
 
 #logo {
@@ -61,8 +38,6 @@ button{
   position: relative;
   align-self: center;
   margin: 20px;
-
-
 }
 
 #console {
@@ -72,22 +47,31 @@ button{
   height: 350px;  
   background:  url("../img/game-bg.jpg") center center no-repeat;
   position: relative;
-  /* align-content: center; */
-  /* top: 200px;
-  left: 350px; */
-  /* z-index: 1; */
 }
-
 
 #game-container {
   display: flex;
   flex-direction: column;
 }
 
-#score-container  ul.invisible {
+#score-container  h3 {
+  margin: 5px;
+}
+
+#score-container {
+  width: 200px;
+  height: 125px;
+  text-align: center;
+  display: inline-block;
+  background-color:rgb(224, 221, 221);
+  text-decoration: none;
+  padding: 10px 10px;
+  border: 1px solid rgb(122, 122, 122);
+
+}
+
+#score-container.invisible {
   display: none;
-  /* height: 10px;
-  background-color: cadetblue; */
 }
 
 
@@ -95,67 +79,63 @@ button{
 /* wolf body has 2 positions - left and right*/
 
 div.wolf-left{
-    /* align-self: center; */
-    /* position:relative;  */
-    position: absolute;
-    width: 98px;
-    height: 152px;
-    background: url("../img/wolf/wolf-p-0.png") center center no-repeat; 
-    top: 166px;
-    left: 177px;
+  position: absolute;
+  width: 98px;
+  height: 152px;
+  background: url("../img/wolf/wolf-p-0.png") center center no-repeat; 
+  top: 166px;
+  left: 177px;
 }
 
 #wolf.wolf-right{
-    /* align-self: center; */
-    /* position:relative;  */
-    position: absolute;
-    width: 98px;
-    height: 152px;
-    background: url("../img/wolf/wolf-p-1.png") center center no-repeat; 
-    top: 165px;
-    left: 292px;
+  position: absolute;
+  width: 98px;
+  height: 152px;
+  background: url("../img/wolf/wolf-p-1.png") center center no-repeat; 
+  top: 165px;
+  left: 292px;
 }
 
 /* basket */
 /* basket has 4 positions: bottom-left, top-left, bottom-right, top-right */
 
 .basket-bot-left {
-    width: 84px;
-    height: 78px;
-    position: absolute;
-    background: url("../img/basket/basket-p-0-0.png") center center no-repeat; 
-    top: 227px;
-    left: 127px;
+  width: 84px;
+  height: 78px;
+  position: absolute;
+  background: url("../img/basket/basket-p-0-0.png") center center no-repeat; 
+  top: 227px;
+  left: 127px;
 }
 
 
 .basket-top-left {
-    width: 84px;
-    height: 78px;
-    position: absolute;
-    background: url("../img/basket/basket-p-0-1.png") center center no-repeat; 
-    top: 158px;
-    left: 127px;
+  width: 84px;
+  height: 78px;
+  position: absolute;
+  background: url("../img/basket/basket-p-0-1.png") center center no-repeat; 
+  top: 158px;
+  left: 127px;
 }
 
 
 .basket-bot-right {
-    width: 84px;
-    height: 78px;
-    position: absolute;
-    background: url("../img/basket/basket-p-1-0.png") center center no-repeat; 
-    top: 235px;
-    left: 360px;
+  width: 84px;
+  height: 78px;
+  position: absolute;
+  background: url("../img/basket/basket-p-1-0.png") center center no-repeat; 
+  top: 235px;
+  left: 360px;
 }
 
 
 .basket-top-right {
-    width: 84px;
-    height: 78px;
-    position: absolute;
-    background: url("../img/basket/basket-p-1-1.png") center center no-repeat; 
-    top: 165px;
-    left: 366px;
+  width: 84px;
+  height: 78px;
+  position: absolute;
+  background: url("../img/basket/basket-p-1-1.png") center center no-repeat; 
+  top: 165px;
+  left: 366px;
 }
 
 
@@ -180,45 +160,45 @@ div.wolf-left{
 
 
 #eggs .egg2 {
-    width: 15px;
-    height: 15px;
-    background: transparent url('../img/egg/egg.png') center center no-repeat;
-    position: absolute;
-    top: 120px;
-    left: 48px;
-    -moz-transform:rotate(65deg);
-    -webkit-transform:rotate(65deg);
-    -o-transform:rotate(65deg);
-    -ms-transform:rotate(65deg);
-    transform: rotate(65deg);
+  width: 15px;
+  height: 15px;
+  background: transparent url('../img/egg/egg.png') center center no-repeat;
+  position: absolute;
+  top: 120px;
+  left: 48px;
+  -moz-transform:rotate(65deg);
+  -webkit-transform:rotate(65deg);
+  -o-transform:rotate(65deg);
+  -ms-transform:rotate(65deg);
+  transform: rotate(65deg);
 }
 
 #eggs .egg4 {
-    width: 15px;
-    height: 15px;
-    background: transparent url('../img/egg/egg.png') center center no-repeat;
-    position: absolute;
-    top: 120px;
-    left: 507px;
-    -moz-transform:rotate(350deg);
-    -webkit-transform:rotate(350deg);
-    -o-transform:rotate(350deg);
-    -ms-transform:rotate(350deg);
-    transform: rotate(350deg);
+  width: 15px;
+  height: 15px;
+  background: transparent url('../img/egg/egg.png') center center no-repeat;
+  position: absolute;
+  top: 120px;
+  left: 507px;
+  -moz-transform:rotate(350deg);
+  -webkit-transform:rotate(350deg);
+  -o-transform:rotate(350deg);
+  -ms-transform:rotate(350deg);
+  transform: rotate(350deg);
 }
 
 #eggs .egg3 {
-    width: 15px;
-    height: 15px;
-    background: transparent url('../img/egg/egg.png') center center no-repeat;
-    position: absolute;
-    top: 198px;
-    left: 507px;
-    -moz-transform:rotate(350deg);
-    -webkit-transform:rotate(350deg);
-    -o-transform:rotate(350deg);
-    -ms-transform:rotate(350deg);
-    transform: rotate(350deg);
+  width: 15px;
+  height: 15px;
+  background: transparent url('../img/egg/egg.png') center center no-repeat;
+  position: absolute;
+  top: 198px;
+  left: 507px;
+  -moz-transform:rotate(350deg);
+  -webkit-transform:rotate(350deg);
+  -o-transform:rotate(350deg);
+  -ms-transform:rotate(350deg);
+  transform: rotate(350deg);
 }
 
 
@@ -257,6 +237,7 @@ div.wolf-left{
     /* text-indent: -200px; */
     display: block;
     overflow: hidden;
+    animation-duration: 3s;
   }
 
   /* then li element gets a class [n-0, n-2 etc] background-position is changing and particular number is shown on the web page */
@@ -306,16 +287,28 @@ div.wolf-left{
   }
 
 /* when loss gets additional class [one, two, tree] it gets corresponding width that expose 1, 2 or 3 elements*/
-  div#loss.one {
+div#loss.one {
     width: 36px;
   }
 
-  div#loss.two {
+div#loss.two {
     width: 75px;
+ 
   }
 
-  div#loss.three {
+div#loss.three {
     width: 114px;
+
   }
 
 
+/* Animation for blinking */
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+  
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
