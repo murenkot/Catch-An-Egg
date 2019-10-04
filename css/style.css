@@ -6,50 +6,90 @@
 
 html, body {
   height: 100%;
-  /* height: 800px; */
-  width: 640px;
+  min-height: 730px;
+  min-width: 572px;
   background-color: beige;
 }
 
 .page {
-    width: 100%;
-    min-width: 640px;
-    min-height: 100%;
-    margin: 0 auto -40px;
-    text-align: center;
-    overflow: hidden;
+  /* width: 100%; */
+  min-width: 572px;
+  min-height: 100%;
+  margin: 0 auto -40px;
+  text-align: center;
+  overflow: hidden;
 }
 
-.button{
+/* .button{
     position: absolute;
 
 }
+
 
 #start{
     width: 150px;
     height: 50px;
     margin: 30px;
+} */
+
+.buttons-container {
+  display: flex;
+}
+
+button{
+  width: 150px;
+  height: 50px;
+  margin: 30px;
+}
+
+
+/* div#score-frame{
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  padding: 20px 10px;
+  background-color: red;
+
+} */
+
+
+
+#logo {
+  width: 240px;
+  height: 70px;
+  background: url(../img/logo.png) center center no-repeat;
+  position: relative;
+  align-self: center;
+  margin: 20px;
+
+
 }
 
 #console {
-    /* align-self: center; */
-    /* position:relative;  */
-    display: block;
-    width: 572px;
-    height: 350px;  
-    background:  url("../img/game-bg.jpg") center center no-repeat;
-    position: relative;
-    /* top: 200px;
-    left: 350px; */
-    z-index: 1;
+  align-self: center;
+  display: block;
+  width: 572px;
+  height: 350px;  
+  background:  url("../img/game-bg.jpg") center center no-repeat;
+  position: relative;
+  /* align-content: center; */
+  /* top: 200px;
+  left: 350px; */
+  /* z-index: 1; */
 }
 
-#test {
-    width: 100px;
-    height: 100px;
-    background-color: green; 
-    
+
+#game-container {
+  display: flex;
+  flex-direction: column;
 }
+
+#score-container  ul.invisible {
+  display: none;
+  /* height: 10px;
+  background-color: cadetblue; */
+}
+
 
 /* Wolf body setup */
 /* wolf body has 2 positions - left and right*/
