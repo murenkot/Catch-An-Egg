@@ -373,7 +373,7 @@ function toggleStatus() {
 
 
 // build a score table with invisible class as a part of DOM
-game.showRecords()
+// game.showRecords()
 
 // listen to <Start a game> botton to start a game:
 $('#start').on('click', game.start.bind(game));
